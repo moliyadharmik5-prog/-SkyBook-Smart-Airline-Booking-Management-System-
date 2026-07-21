@@ -11,11 +11,11 @@ $activePage = $activePage ?? '';
 $extraStyles = $extraStyles ?? '';
 $navigation = [
     'home' => ['label' => 'Home', 'url' => 'home.php'],
-    'about' => ['label' => 'About', 'url' => 'about us.php'],
+    'about' => ['label' => 'About Us', 'url' => 'about us.php'],
     'services' => ['label' => 'Services', 'url' => 'service.php'],
     'destinations' => ['label' => 'Destinations', 'url' => 'Destination.php'],
-    'booking' => ['label' => 'Book', 'url' => 'Book.php'],
-    'contact' => ['label' => 'Contact', 'url' => 'contact us.php'],
+    'booking' => ['label' => 'Book a Flight', 'url' => 'Book.php'],
+    'contact' => ['label' => 'Contact Us', 'url' => 'contact us.php'],
 ];
 ?>
 <!DOCTYPE html>
@@ -33,7 +33,7 @@ $navigation = [
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center gap-2" href="home.php">
-                <img src="https://static.vecteezy.com/system/resources/previews/000/619/645/original/aircraft-airplane-airline-logo-label-journey-air-travel-airliner-symbol-vector-illustration.jpg" alt="Airline logo" height="48">
+                <img src="https://static.vecteezy.com/system/resources/previews/000/619/645/original/aircraft-airplane-airline-logo-label-journey-air-travel-airliner-symbol-vector-illustration.jpg" alt="Maharshi Airline logo" height="48">
                 <span><?php echo e($siteName); ?></span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,7 +43,7 @@ $navigation = [
                 <ul class="navbar-nav ms-auto">
                     <?php foreach ($navigation as $key => $item): ?>
                         <li class="nav-item">
-                            <a class="nav-link <?php echo $activePage === $key ? 'active' : ''; ?>" href="<?php echo e($item['url']); ?>">
+                            <a class="nav-link <?php echo $activePage === $key ? 'active' : ''; ?>" href="<?php echo e($item['url']); ?>"<?php echo $activePage === $key ? ' aria-current="page"' : ''; ?>>
                                 <?php echo e($item['label']); ?>
                             </a>
                         </li>

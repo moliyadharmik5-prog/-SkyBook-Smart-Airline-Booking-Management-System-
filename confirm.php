@@ -16,25 +16,32 @@ body {
 }
 ';
 
-$passengerName = trim($_POST['name'] ?? '');
-$from = trim($_POST['from'] ?? '');
-$to = trim($_POST['to'] ?? '');
-$departureDate = trim($_POST['departure_date'] ?? '');
-$hasBookingDetails = $_SERVER['REQUEST_METHOD'] === 'POST' && $passengerName !== '' && $from !== '' && $to !== '' && $departureDate !== '';
-$bookingId = 'AIR' . date('Y') . random_int(1000, 9999);
+$booking = null;
+$bookingId = trim($_GET['booking_id'] ?? '');
+
+if ($bookingId !== '') {
+    try {
+        require __DIR__ . '/includes/database.php';
+        $statement = databaseConnection()->prepare('SELECT * FROM bookings WHERE booking_id = ?');
+        $statement->execute([$bookingId]);
+        $booking = $statement->fetch() ?: null;
+    } catch (Throwable $exception) {
+        error_log($exception->getMessage());
+    }
+}
 
 require __DIR__ . '/includes/header.php';
 ?>
 
 <main class="container">
     <div class="confirm-box">
-        <?php if ($hasBookingDetails): ?>
+        <?php if ($booking): ?>
             <h2 class="text-success mb-4">Booking Confirmed!</h2>
-            <h4>Passenger: <span class="text-primary"><?php echo e($passengerName); ?></span></h4>
-            <p><strong>Route:</strong> <?php echo e($from); ?> to <?php echo e($to); ?></p>
-            <p><strong>Departure Date:</strong> <?php echo e($departureDate); ?></p>
-            <p>Your flight ticket has been booked successfully.</p>
-            <p><strong>Booking ID:</strong> <?php echo e($bookingId); ?></p>
+            <h4>Passenger: <span class="text-primary"><?php echo e($booking['passenger_name']); ?></span></h4>
+            <p><strong>Route:</strong> <?php echo e($booking['departure_city']); ?> to <?php echo e($booking['destination_city']); ?></p>
+            <p><strong>Departure Date:</strong> <?php echo e($booking['departure_date']); ?></p>
+            <p>Your Maharshi Airline flight has been booked successfully.</p>
+            <p><strong>Booking ID:</strong> <?php echo e($booking['booking_id']); ?></p>
         <?php else: ?>
             <h2 class="text-warning mb-4">Booking Details Missing</h2>
             <p>Please complete the booking form before opening the confirmation page.</p>

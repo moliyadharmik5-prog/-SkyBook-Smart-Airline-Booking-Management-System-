@@ -26,7 +26,7 @@ require __DIR__ . '/includes/header.php';
 ?>
 
 <main class="container my-5">
-    <h2 class="text-primary mb-4">Contact Us</h2>
+    <h2 class="text-primary mb-4">Contact Maharshi Airline</h2>
 
     <?php foreach ($offices as $office): ?>
         <div class="card mb-4">

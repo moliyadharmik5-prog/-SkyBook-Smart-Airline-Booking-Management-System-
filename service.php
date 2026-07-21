@@ -15,7 +15,7 @@ require __DIR__ . '/includes/header.php';
 
 <main class="container my-5">
     <h2 class="text-primary mb-4">Our Services</h2>
-    <p>We offer a range of services designed to make your journey comfortable, enjoyable, and seamless. Discover what we have to offer below:</p>
+    <p>Maharshi Airline offers a range of services designed to make your journey comfortable, enjoyable, and seamless. Discover what we have to offer below:</p>
 
     <div class="row">
         <?php foreach ($services as $service): ?>

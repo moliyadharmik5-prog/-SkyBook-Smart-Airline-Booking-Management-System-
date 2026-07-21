@@ -25,7 +25,7 @@ require __DIR__ . '/includes/header.php';
 
 <main class="container my-5">
     <h2 class="text-primary mb-4">Explore Our Destinations</h2>
-    <p>Fly with us to over 100 destinations around the world. Whether you are looking for a weekend getaway, a business trip, or a family vacation, we have you covered.</p>
+    <p>Fly with Maharshi Airline to over 100 destinations around the world. Whether you are looking for a weekend getaway, a business trip, or a family vacation, we have you covered.</p>
 
     <section class="mb-5">
         <h3>Popular Destinations</h3>

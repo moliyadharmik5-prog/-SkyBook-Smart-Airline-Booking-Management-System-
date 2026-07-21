@@ -20,9 +20,21 @@ require __DIR__ . '/includes/header.php';
 
 <main class="container">
     <div class="booking-box">
-        <h2 class="text-center text-primary mb-4">Flight Booking</h2>
+        <h2 class="text-center text-primary mb-4">Book a Maharshi Airline Flight</h2>
 
-        <form action="confirm.php" method="post">
+        <?php if (isset($_GET['error'])): ?>
+            <div class="alert alert-danger" role="alert">
+                <?php if ($_GET['error'] === 'database'): ?>
+                    Booking could not be saved. Please check the database connection and try again.
+                <?php elseif ($_GET['error'] === 'same-city'): ?>
+                    Departure and destination cities must be different.
+                <?php else: ?>
+                    Please enter valid details in every field.
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
+
+        <form action="process_booking.php" method="post">
             <div class="mb-3">
                 <label class="form-label" for="name">Passenger Name</label>
                 <input type="text" class="form-control" id="name" name="name" required>
